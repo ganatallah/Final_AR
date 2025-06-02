@@ -83,6 +83,11 @@ public class CarUIManager : MonoBehaviour
         infoPanel.SetActive(false);
         if (infoAudioSource) infoAudioSource.Stop();
     }
+
+    public void CloseColorPanel()
+    {
+        if (colorPanel != null) colorPanel.SetActive(false);
+    }
 }
 
 
