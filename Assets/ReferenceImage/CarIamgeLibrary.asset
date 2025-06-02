@@ -26,7 +26,7 @@ MonoBehaviour:
     m_Size: {x: 0, y: 0}
     m_SpecifySize: 0
     m_Name: BMW
-    m_Texture: {fileID: 0}
+    m_Texture: {fileID: 2800000, guid: 02cf8b1adf5c3c24c8a33c43725347c1, type: 3}
   - m_SerializedGuid:
       m_GuidLow: 4969467820926568140
       m_GuidHigh: 15487684011579005358
@@ -36,4 +36,4 @@ MonoBehaviour:
     m_Size: {x: 0, y: 0}
     m_SpecifySize: 0
     m_Name: HONDA
-    m_Texture: {fileID: 0}
+    m_Texture: {fileID: 2800000, guid: 4d5ca37734bddd14e898263f2fa7db81, type: 3}

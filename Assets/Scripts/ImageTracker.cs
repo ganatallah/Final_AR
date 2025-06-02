@@ -13,6 +13,7 @@ public class ImageTracker : MonoBehaviour
 
     void Awake()
     {
+        Debug.Log("Starting");
         trackedImages = GetComponent<ARTrackedImageManager>();
     }
 
@@ -20,40 +21,56 @@ public class ImageTracker : MonoBehaviour
     {
         trackedImages.trackedImagesChanged += OnTrackedImagesChanged;
     }
-    
+
     void OnDisable()
     {
         trackedImages.trackedImagesChanged -= OnTrackedImagesChanged;
     }
-    
+
     // Event Handler
     private void OnTrackedImagesChanged(ARTrackedImagesChangedEventArgs eventArgs)
     {
-        //Create object based on image tracked
+        // Added Images
         foreach (var trackedImage in eventArgs.added)
         {
+            Debug.Log("Image added: " + trackedImage.referenceImage.name);
+
             foreach (var arPrefab in ArPrefabs)
             {
-                if(trackedImage.referenceImage.name == arPrefab.name)
+                Debug.Log("Checking prefab: " + arPrefab.name);
+
+                if (trackedImage.referenceImage.name == arPrefab.name)
                 {
-                    var newPrefab = Instantiate(arPrefab, trackedImage.transform);
+                    Debug.Log("Match found! Instantiating prefab: " + arPrefab.name);
+                    var newPrefab = Instantiate(arPrefab, trackedImage.transform.position, trackedImage.transform.rotation);
+                    newPrefab.transform.parent = trackedImage.transform;
                     ARObjects.Add(newPrefab);
+                    break;
                 }
             }
         }
 
-        //Update tracking position
+        // Updated Images
         foreach (var trackedImage in eventArgs.updated)
         {
-            foreach (var gameObject in ARObjects)
+            Debug.Log("Image updated: " + trackedImage.referenceImage.name + " | Tracking state: " + trackedImage.trackingState);
+
+            foreach (var obj in ARObjects)
             {
-                if(gameObject.name == trackedImage.name)
+                // Compare reference image name with spawned object name
+                if (obj.name.Contains(trackedImage.referenceImage.name))
                 {
-                    gameObject.SetActive(trackedImage.trackingState == TrackingState.Tracking);
+                    bool isTracking = trackedImage.trackingState == TrackingState.Tracking;
+                    Debug.Log("Updating object " + obj.name + " | Set active: " + isTracking);
+                    obj.SetActive(isTracking);
                 }
             }
         }
 
+        // Removed Images
+        foreach (var trackedImage in eventArgs.removed)
+        {
+            Debug.Log("Image removed: " + trackedImage.referenceImage.name);
+        }
     }
 }
-
