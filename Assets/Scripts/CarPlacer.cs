@@ -7,13 +7,15 @@ using TMPro;
 
 public class CarPlacer : MonoBehaviour
 {
-    public GameObject[] carPrefabs; // Assign BMW M4 [0], BMW i8 [1]
+    public GameObject[] carPrefabs; // BMW M4 [0], BMW i8 [1]
     private int selectedIndex = 0;
 
-    public TextMeshProUGUI toggleButtonText; // Optional: to show current car name
+    public TextMeshProUGUI toggleButtonText;
 
     private ARRaycastManager raycastManager;
     private List<ARRaycastHit> hits = new List<ARRaycastHit>();
+
+    private GameObject currentCarInstance = null; // Tracks last spawned car
 
     void Awake()
     {
@@ -30,7 +32,13 @@ public class CarPlacer : MonoBehaviour
         if (raycastManager.Raycast(touch.position, hits, TrackableType.PlaneWithinPolygon))
         {
             Pose hitPose = hits[0].pose;
-            Instantiate(carPrefabs[selectedIndex], hitPose.position, hitPose.rotation);
+
+            // Destroy previous car if it exists
+            if (currentCarInstance != null)
+                Destroy(currentCarInstance);
+
+            // Instantiate the selected car
+            currentCarInstance = Instantiate(carPrefabs[selectedIndex], hitPose.position, hitPose.rotation);
         }
     }
 
@@ -39,6 +47,16 @@ public class CarPlacer : MonoBehaviour
         selectedIndex = (selectedIndex + 1) % carPrefabs.Length;
         Debug.Log("Switched to: " + carPrefabs[selectedIndex].name);
         UpdateButtonLabel();
+
+        // Optional: If a car is already placed, replace it immediately
+        if (currentCarInstance != null)
+        {
+            Vector3 pos = currentCarInstance.transform.position;
+            Quaternion rot = currentCarInstance.transform.rotation;
+
+            Destroy(currentCarInstance);
+            currentCarInstance = Instantiate(carPrefabs[selectedIndex], pos, rot);
+        }
     }
 
     private void UpdateButtonLabel()
@@ -49,3 +67,4 @@ public class CarPlacer : MonoBehaviour
         }
     }
 }
+
