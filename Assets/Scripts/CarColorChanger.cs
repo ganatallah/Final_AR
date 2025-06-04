@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CarColorChanger : MonoBehaviour
@@ -7,7 +9,7 @@ public class CarColorChanger : MonoBehaviour
 
     private void Awake()
     {
-        // Create unique material instances to avoid affecting other cars
+        
         instancedMaterials = new Material[targetRenderers.Length];
         for (int i = 0; i < targetRenderers.Length; i++)
         {
@@ -15,15 +17,13 @@ public class CarColorChanger : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Call this to change the car's base color
-    /// </summary>
-    /// <param name="color">New color tint</param>
+    
+    <param name="color">New color tint</param>
     private void ChangeColor(Color color)
     {
         foreach (var mat in instancedMaterials)
         {
-            mat.SetColor("_BaseColor", color); // "_BaseColor" is the property used in URP/Lit
+            mat.SetColor("_BaseColor", color); 
         }
     }
 
@@ -32,9 +32,7 @@ public class CarColorChanger : MonoBehaviour
         ChangeColor(newColor);
     }
 
-    /// <summary>
-    /// Call this to assign a completely random color to the car
-    /// </summary>
+    
     public void ChangeToRandomColor()
     {
         Color randomColor = Random.ColorHSV(0f, 1f, 0.5f, 1f, 0.6f, 1f);
