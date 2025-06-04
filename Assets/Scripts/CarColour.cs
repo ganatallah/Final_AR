@@ -9,7 +9,6 @@ public class CarColour : MonoBehaviour
 
     private void Awake()
     {
-        
         instancedMaterials = new Material[targetRenderers.Length];
         for (int i = 0; i < targetRenderers.Length; i++)
         {
