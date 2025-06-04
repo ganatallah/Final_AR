@@ -602,7 +602,7 @@ PrefabInstance:
     - target: {fileID: 8587143947303126312, guid: 39d0d12389d1a604d829caa1e768206e,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CloseColorPanel
+      value: CloseInfo
       objectReference: {fileID: 0}
     - target: {fileID: 8587143947303126312, guid: 39d0d12389d1a604d829caa1e768206e,
         type: 3}
