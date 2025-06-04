@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8780513386507000524}
-  - component: {fileID: 7172668275504917748}
+  - component: {fileID: 7358914796146749161}
   m_Layer: 0
   m_Name: ColorChanger
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 9142497783990643702}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7172668275504917748
+--- !u!114 &7358914796146749161
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7298163878341759232}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9cd3772dd7b903409892ff5fbc9bdcd, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f4f746be80e8db4ebccf1b68c06dc16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetRenderers:
@@ -822,7 +822,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7172668275504917748}
+      objectReference: {fileID: 7358914796146749161}
     - target: {fileID: 7182522909223073956, guid: 39d0d12389d1a604d829caa1e768206e,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -836,7 +836,7 @@ PrefabInstance:
     - target: {fileID: 7182522909223073956, guid: 39d0d12389d1a604d829caa1e768206e,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CarColorChanger, Assembly-CSharp
+      value: CarColour, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7182522909223073956, guid: 39d0d12389d1a604d829caa1e768206e,
         type: 3}

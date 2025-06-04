@@ -17,7 +17,7 @@ public class CarColour : MonoBehaviour
     }
 
     
-    <param name="color">New color tint</param>
+    // <param name="color">New color tint</param>
     private void ChangeColor(Color color)
     {
         foreach (var mat in instancedMaterials)

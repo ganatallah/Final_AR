@@ -33,8 +33,11 @@ public class CarUIManager : MonoBehaviour
             Debug.Log("Found renderers: " + carRenderers.Count);
         }
 
-        colorPanel.SetActive(false);
-        infoPanel.SetActive(false);
+        if (colorPanel != null)
+            colorPanel.SetActive(false);
+        
+        if (infoPanel != null)
+            infoPanel.SetActive(false);
     }
 
     public void ToggleColorPanel()
