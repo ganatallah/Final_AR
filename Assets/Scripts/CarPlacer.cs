@@ -48,15 +48,34 @@ public class CarPlacer : MonoBehaviour
         Debug.Log("Switched to: " + carPrefabs[selectedIndex].name);
         UpdateButtonLabel();
 
-        // Optional: If a car is already placed, replace it immediately
-        if (currentCarInstance != null)
-        {
-            Vector3 pos = currentCarInstance.transform.position;
-            Quaternion rot = currentCarInstance.transform.rotation;
+        // Find all car objects
+        GameObject[] allCars = GameObject.FindGameObjectsWithTag("Car");
 
-            Destroy(currentCarInstance);
-            currentCarInstance = Instantiate(carPrefabs[selectedIndex], pos, rot);
+        // Get position/rotation from the first car (if any)
+        Vector3 spawnPos = Vector3.zero;
+        Quaternion spawnRot = Quaternion.identity;
+        bool foundOne = false;
+
+        foreach (GameObject car in allCars)
+        {
+            if (!foundOne)
+            {
+                spawnPos = car.transform.position;
+                spawnRot = car.transform.rotation;
+                foundOne = true;
+            }
+
+            Destroy(car);
         }
+
+        if (!foundOne)
+        {
+            Debug.LogWarning("No existing cars found to replace.");
+            return;
+        }
+
+        // Spawn the selected car at the position of the first destroyed one
+        currentCarInstance = Instantiate(carPrefabs[selectedIndex], spawnPos, spawnRot);
     }
 
     private void UpdateButtonLabel()
